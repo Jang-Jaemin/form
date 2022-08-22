@@ -95,5 +95,19 @@ public class FormItemController {
         return "redirect:/form/items/{itemId}";
     }
 
+    //  FormItemController 변경
+    @GetMapping("/add")
+    public String addForm(Model model) {
+        model.addAttribute("item", new Item());
+        return "form/addForm";
+    }
+
+    //  FormItemController 유지
+    @GetMapping("/{itemId}/edit")
+    public String editForm(@PathVariable Long itemId, Model model) {
+        Item item = itemRepository.findById(itemId);
+        model.addAttribute("item", item);
+        return "form/editForm";
+    }
 }
 
