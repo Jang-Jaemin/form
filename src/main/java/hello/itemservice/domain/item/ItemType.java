@@ -13,4 +13,6 @@ public enum ItemType {
     public String getDescription() {
         return description;
     }
+    //  상품종류는ENUM을사용한다.
+    //  설명을위해description필드를추가했다.
 }

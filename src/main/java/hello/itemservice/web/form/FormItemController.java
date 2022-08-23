@@ -109,5 +109,14 @@ public class FormItemController {
         model.addAttribute("item", item);
         return "form/editForm";
     }
+
+    @PostMapping("/add")
+    public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes){
+        log.info("item.open={}",item.getOpen());\
+        Item savedItem = itemRepository.save(item);
+        redirectAttributes.addAttribute("itemid",savedItem.getId());
+        redirectAttributes.addAttribute("status", true);
+        return "redirect:/form/item/edit";
+    }
 }
 

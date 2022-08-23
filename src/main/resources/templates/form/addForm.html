@@ -52,10 +52,23 @@
         <div>판매 여부</div>
         <div>
             <div class="form-check">
-                <input type="checkbox" id="open" th:field="*{open}" class="form-check-input">
+                <input type="checkbox" id="open" name="open" class="form-check-input">
+                <input type="hidden" name="_open" value="on"/> <!-- 히든 필드 추가 -->
                 <label for="open" class="form-check-label">판매 오픈</label>
             </div>
         </div>
+        <!--
+        체크 박스 체크
+        open=on&_open=on
+        체크박스를체크하면스프링 MVC가open에값이있는것을확인하고사용한다. 이때_open은 무시한다.
+
+        체크 박스 미체크
+        _open=on
+        체크 박스를 체크하지 않으면 스프링 MVC가 _open만 있는것을 확인하고,
+        open의 값이 체크되지 않았다고 인식한다.
+        이 경우 서버에서 Boolean 타입을 찍어보면 결과가 null이 아니라 false인것을 확인할 수 있다.
+        log.info("item.open={}", item.getOpen());
+        -->
 
         <!-- multi checkbox -->
         <div>

@@ -1,3 +1,4 @@
+//  Item - 상품
 package hello.itemservice.domain.item;
 
 import lombok.Data;
@@ -26,3 +27,5 @@ public class Item {
         this.quantity = quantity;
     }
 }
+// ENUM, 클래스, String 같은다양한상황을준비했다.
+// 각각의 상황에 어떻게 폼의 데이터를 받을 수 있는지 하나씩 알아보자.
