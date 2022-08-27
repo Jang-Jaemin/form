@@ -31,6 +31,13 @@ public class FormItemController {
         regions.put("BUSAN", "부산");
         regions.put("JEJU", "제주");
         return regions;
+
+        //  @ModelAttribute의 특별한 사용법
+        //  등록폼, 상세화면, 수정폼에서모두서울, 부산, 제주라는체크박스를반복해서보여주어야한다.
+        //  이렇게 하려면각각의컨트롤러에서 model.addAttribute(...)을사용해서체크박스를구성하는데이터를 반복해서넣어주어야한다.
+        //  @ModelAttribute는 이렇게 컨트롤러에 있는 별도의 메서드에 적용할 수 있다.
+        //  이렇게하면 해당 컨트롤러를 요청할 때 regions에서 반환한 값이 자동으로 모델( model)에 담기게된다.
+        //  물론 이렇게 사용하지 않고, 각각의 컨트롤러 메서드에서 모델에 직접데이터를 담아서 처리 해도된다.
     }
 
     @ModelAttribute("itemTypes")
@@ -112,7 +119,7 @@ public class FormItemController {
 
     @PostMapping("/add")
     public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes){
-        log.info("item.open={}",item.getOpen());\
+        log.info("item.open={}",item.getOpen());
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemid",savedItem.getId());
         redirectAttributes.addAttribute("status", true);
