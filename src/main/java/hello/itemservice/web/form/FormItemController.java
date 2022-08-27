@@ -42,7 +42,11 @@ public class FormItemController {
 
     @ModelAttribute("itemTypes")
     public ItemType[] itemTypes() {
+
         return ItemType.values();
+        //  itemTypes를 등록 폼, 조회, 수정폼에서 모두 사용 하므로 @ModelAttribute의 특별한사용법을 적용하자.
+        //  ItemType.values()를사용하면해당 ENUM의 모든 정보를 배열로 반환한다.
+        //  예) [BOOK, FOOD, ETC]
     }
 
     @ModelAttribute("deliveryCodes")
@@ -52,6 +56,13 @@ public class FormItemController {
         deliveryCodes.add(new DeliveryCode("NORMAL", "일반 배송"));
         deliveryCodes.add(new DeliveryCode("SLOW", "느린 배송"));
         return deliveryCodes;
+
+        //  DeliveryCode라는 자바 객체를 사용하는 방법으로 진행하겠다.
+        //  DeliveryCode를 등록 폼, 조회, 수정폼에서모두사용하므로@ModelAttribute의특별한사용법을 적용하자.
+
+        //  참고:
+        //  @ModelAttribute가 있는 deliveryCodes() 메서드는컨트롤러가호출될때마다사용되므로 deliveryCodes 객체도계속생성된다.
+        //  이런 부분은 미리 생성 해두고 재사용하는것이 더 효율적이다.
     }
 
     @GetMapping
